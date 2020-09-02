@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./Ingredient.module.css";
 
 const Ingredient = (props) => {
@@ -32,6 +33,10 @@ const Ingredient = (props) => {
       break;
   }
   return ingredient;
+};
+
+Ingredient.propTypes = {
+  type: PropTypes.string.isRequired,
 };
 
 export default Ingredient;
