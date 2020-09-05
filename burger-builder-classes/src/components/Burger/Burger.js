@@ -9,6 +9,7 @@ const Burger = (props) => {
       return <Ingredient key={ingKey + i} type={ingKey} />;
     });
   });
+  console.log(ingredients);
   return (
     <div className={styles.burger}>
       <Ingredient type="bread-top" />
