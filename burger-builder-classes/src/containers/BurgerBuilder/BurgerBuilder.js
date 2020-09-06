@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../BuildControls/BuildControls";
+import Modal from "../../components/UI/Modal/Modal";
+import OrderSummary from "../OrderSummary/OrderSummary";
 
 //Ingredient Prices for burger item
 const INGREDIENT_PRICES = {
   salad: 0.5,
-  cheese: 0.4,
-  meat: 1.7,
+  cheese: 0.5,
+  meat: 1.5,
   bacon: 0.5,
 };
 
@@ -19,6 +21,26 @@ class BurgerBuilder extends Component {
       meat: 0,
     },
     totalPrice: 0,
+    purchasable: false,
+  };
+
+  updatePurchaseState = () => {
+    if (this.state.totalPrice > 0) {
+      this.setState({ purchasable: true });
+    } else {
+      this.setState({ purchasable: false });
+    }
+    /*const ingredients = {
+      ...this.state.ingredients,
+    };
+    const sum = Object.keys(ingredients)
+      .map((ingredient) => {
+        return ingredients[ingredient];
+      })
+      .reduce((sum, el) => {
+        return sum + el;
+      }, 0);
+    this.setState({ purchasable: sum > 0 });*/
   };
 
   addIngredient = (type) => {
@@ -29,6 +51,7 @@ class BurgerBuilder extends Component {
     newIngCount[type] = ingCount;
     const newPrice = this.state.totalPrice + INGREDIENT_PRICES[type];
     this.setState({ totalPrice: newPrice, ingredients: newIngCount });
+    this.updatePurchaseState();
   };
 
   removeIngredient = (type) => {
@@ -42,6 +65,7 @@ class BurgerBuilder extends Component {
     newIngCount[type] = ingCount;
     const newPrice = this.state.totalPrice - INGREDIENT_PRICES[type];
     this.setState({ totalPrice: newPrice, ingredients: newIngCount });
+    this.updatePurchaseState();
   };
 
   render() {
@@ -55,11 +79,16 @@ class BurgerBuilder extends Component {
     /*****************************************************************/
     return (
       <>
+        <Modal>
+          <OrderSummary ingredients={this.state.ingredients} />
+        </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
+          price={this.state.totalPrice}
           ingredientAdded={this.addIngredient}
           ingredientRemoved={this.removeIngredient}
           disabled={disabled}
+          purchasable={this.state.purchasable}
         />
       </>
     );
