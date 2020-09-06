@@ -17,6 +17,8 @@ const OrderSummary = ({ ingredients }) => {
       <p>Binding Burger Ingredients</p>
       <ul>{ingredientSummary}</ul>
       <p>Continue to Checkout?</p>
+      <button>CANCEL</button>
+      <button>CONTINUE</button>
     </>
   );
 };
