@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../../components/UI/Button/Button";
 
 const OrderSummary = ({ ingredients }) => {
   //Create ingredient summary
@@ -17,8 +18,8 @@ const OrderSummary = ({ ingredients }) => {
       <p>Binding Burger Ingredients</p>
       <ul>{ingredientSummary}</ul>
       <p>Continue to Checkout?</p>
-      <button>CANCEL</button>
-      <button>CONTINUE</button>
+      <Button btnType="danger">CANCEL</Button>
+      <Button btnType="success">CONTINUE</Button>
     </>
   );
 };
