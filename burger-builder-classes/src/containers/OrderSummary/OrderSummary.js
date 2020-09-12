@@ -5,6 +5,7 @@ const OrderSummary = ({
   ingredients,
   purchaseCancelled,
   purcahseContinued,
+  price,
 }) => {
   //Create ingredient summary
   const ingredientSummary = Object.keys(ingredients).map((ingredient) => {
@@ -21,6 +22,9 @@ const OrderSummary = ({
       <h3>Your Order</h3>
       <p>Binding Burger Ingredients</p>
       <ul>{ingredientSummary}</ul>
+      <p>
+        <strong>Total: ${price.toFixed(2)}</strong>
+      </p>
       <p>Continue to Checkout?</p>
       <Button btnType="danger" clicked={purchaseCancelled}>
         CANCEL
