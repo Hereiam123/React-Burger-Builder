@@ -1,12 +1,13 @@
 import React from "react";
 import NavigationItem from "./NavigationItem/NavigationItem";
+import styles from "./NavigationItems.module.css";
 
 const NavigationItems = () => {
   return (
-    <ul>
-      <li>
-        <a href="#">Navigation Item</a>
-      </li>
+    <ul className={styles.navigationItems}>
+      <NavigationItem />
+      <NavigationItem />
+      <NavigationItem />
     </ul>
   );
 };

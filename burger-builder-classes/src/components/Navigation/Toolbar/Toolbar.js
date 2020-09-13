@@ -8,7 +8,9 @@ const Toolbar = () => {
     <header className={styles.toolbar}>
       <Logo />
       <div>Menu</div>
-      <nav>...</nav>
+      <nav>
+        <NavigationItems />
+      </nav>
     </header>
   );
 };
