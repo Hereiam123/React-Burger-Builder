@@ -6,7 +6,7 @@ import styles from "./Sidebar.module.css";
 const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
-      <Logo />
+      <Logo logoHeight="10%" />
       <nav>
         <NavigationItems />
       </nav>
