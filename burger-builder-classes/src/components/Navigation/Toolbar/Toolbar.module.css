@@ -20,3 +20,12 @@
 .toolbar nav {
   height: 100%;
 }
+
+@media screen and (max-width: 499px) {
+  .desktopOnly {
+    display: none;
+  }
+  .logo {
+    display: none;
+  }
+}

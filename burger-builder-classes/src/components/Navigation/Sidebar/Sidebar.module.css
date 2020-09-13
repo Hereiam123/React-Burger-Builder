@@ -11,10 +11,14 @@
   box-shadow: 1px 0px 5px black;
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
 .logo {
   height: 11%;
+  margin-bottom: 32px;
 }
 
 @media screen and (min-width: 500px) {
