@@ -4,10 +4,22 @@ import Toolbar from "../Navigation/Toolbar/Toolbar";
 import Sidebar from "../Navigation/Sidebar/Sidebar";
 
 class Layout extends Component {
+  state = {
+    sideBarOpen: true,
+  };
+
+  sideDrawerCloseHandler = () => {
+    this.setState({ sideBarOpen: false });
+    console.log(this.state.sideBarOpen);
+  };
+
   render() {
     return (
       <>
-        <Sidebar />
+        <Sidebar
+          closedHandler={this.sideDrawerCloseHandler}
+          open={this.state.sideBarOpen}
+        />
         <Toolbar />
         <div> Sidedrawer, Backdrop</div>
         <main className={styles.content}>{this.props.children}</main>
