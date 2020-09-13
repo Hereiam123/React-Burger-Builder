@@ -5,10 +5,14 @@ import styles from "./Sidebar.module.css";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 
 const Sidebar = ({ open, closedHandler }) => {
+  let attachClass = [styles.sidebar, styles.close];
+  if (open) {
+    attachClass = [styles.sidebar, styles.open];
+  }
   return (
     <>
       <Backdrop show={open} clicked={closedHandler} />
-      <div className={styles.sidebar}>
+      <div className={attachClass.join(" ")}>
         <div className={styles.logo}>
           <Logo />
         </div>
