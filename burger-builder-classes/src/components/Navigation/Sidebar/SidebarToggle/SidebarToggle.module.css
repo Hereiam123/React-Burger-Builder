@@ -9,7 +9,7 @@
   box-sizing: border-box;
   cursor: pointer;
   border: none;
-  background-color: #ffc72c;
+  background-color: transparent;
 }
 
 .sidebarToggle div {
