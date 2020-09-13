@@ -5,9 +5,10 @@ import styles from "./NavigationItems.module.css";
 const NavigationItems = () => {
   return (
     <ul className={styles.navigationItems}>
-      <NavigationItem />
-      <NavigationItem />
-      <NavigationItem />
+      <NavigationItem link="/" active>
+        Burger Builder
+      </NavigationItem>
+      <NavigationItem link="/">Checkout</NavigationItem>
     </ul>
   );
 };
