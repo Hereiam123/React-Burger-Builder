@@ -13,6 +13,10 @@
   transition: transform 0.3s ease-out;
 }
 
+.logo {
+  height: 11%;
+}
+
 @media screen and (min-width: 500px) {
   .sidebar {
     display: none;

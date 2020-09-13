@@ -13,6 +13,10 @@
   box-sizing: border-box;
 }
 
+.logo {
+  height: 80%;
+}
+
 .toolbar nav {
   height: 100%;
 }
