@@ -8,6 +8,8 @@
   padding: 10px 0;
   box-sizing: border-box;
   cursor: pointer;
+  border: none;
+  background-color: #ffc72c;
 }
 
 .sidebarToggle div {

@@ -5,7 +5,7 @@ import Sidebar from "../Navigation/Sidebar/Sidebar";
 
 class Layout extends Component {
   state = {
-    sideBarOpen: true,
+    sideBarOpen: false,
   };
 
   sideDrawerCloseHandler = () => {
