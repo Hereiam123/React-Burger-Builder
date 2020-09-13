@@ -6,7 +6,7 @@ const Logo = ({ logoHeight }) => {
   console.log(logoHeight);
   return (
     <div className={styles.logo} style={{ height: logoHeight }}>
-      <img src={logoImage} />
+      <img src={logoImage} alt="Burger Logo" />
     </div>
   );
 };
