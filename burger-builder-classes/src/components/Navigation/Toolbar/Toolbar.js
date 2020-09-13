@@ -2,11 +2,12 @@ import React from "react";
 import styles from "./Toolbar.module.css";
 import Logo from "../../Logo/Logo";
 import NavigationItems from "../NavigationItems/NavigationItems";
+import SidebarToggle from "../Sidebar/SidebarToggle/SidebarToggle";
 
-const Toolbar = () => {
+const Toolbar = ({ openHandler }) => {
   return (
     <header className={styles.toolbar}>
-      <div>Menu</div>
+      <SidebarToggle clicked={openHandler} />
       <div className={styles.logo}>
         <Logo />
       </div>

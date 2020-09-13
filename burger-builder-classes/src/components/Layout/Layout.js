@@ -12,6 +12,10 @@ class Layout extends Component {
     this.setState({ sideBarOpen: false });
   };
 
+  sideDrawerOpenHandler = () => {
+    this.setState({ sideBarOpen: true });
+  };
+
   render() {
     return (
       <>
@@ -19,7 +23,7 @@ class Layout extends Component {
           closedHandler={this.sideDrawerCloseHandler}
           open={this.state.sideBarOpen}
         />
-        <Toolbar />
+        <Toolbar openHandler={this.sideDrawerOpenHandler} />
         <div> Sidedrawer, Backdrop</div>
         <main className={styles.content}>{this.props.children}</main>
       </>
