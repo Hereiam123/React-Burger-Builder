@@ -8,7 +8,7 @@
   z-index: 200;
   background-color: darkorange;
   padding: 32px 16px;
-  box-shadow: -10px 0px 10px black;
+  box-shadow: 1px 0px 5px black;
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
 }
