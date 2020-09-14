@@ -24,6 +24,7 @@ class BurgerBuilder extends Component {
     totalPrice: 0,
     purchasable: false,
     purchasing: false,
+    loading: false,
   };
 
   updatePurchaseState = () => {
@@ -103,6 +104,11 @@ class BurgerBuilder extends Component {
       disabled[key] = disabled[key] <= 0;
     }
     /*****************************************************************/
+
+    /**Check for if loading Burger data to outside API*/
+    if (this.state.loading) {
+    }
+    /******************************************/
     return (
       <>
         <Modal
