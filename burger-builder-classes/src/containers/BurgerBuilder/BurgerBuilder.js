@@ -3,6 +3,7 @@ import Burger from "../../components/Burger/Burger";
 import BuildControls from "../BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../OrderSummary/OrderSummary";
+import Spinner from "../../components/UI/Spinner/Spinner";
 import axios from "../../axiosInstance";
 
 //Ingredient Prices for burger item
@@ -80,6 +81,7 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
+    this.setState({ loading: true });
     const order = {
       ingredients: this.state.ingredients,
       price: this.state.totalPrice,
@@ -92,6 +94,10 @@ class BurgerBuilder extends Component {
       })
       .catch((e) => {
         console.log(e);
+        alert("Error in ordering!");
+      })
+      .finally(() => {
+        this.setState({ loading: false, purchasing: false });
       });
   };
 
@@ -104,23 +110,22 @@ class BurgerBuilder extends Component {
       disabled[key] = disabled[key] <= 0;
     }
     /*****************************************************************/
-
-    /**Check for if loading Burger data to outside API*/
-    if (this.state.loading) {
-    }
-    /******************************************/
     return (
       <>
         <Modal
           show={this.state.purchasing}
           modalClosed={this.purchaseCancelHandler}
         >
-          <OrderSummary
-            ingredients={this.state.ingredients}
-            purchaseCancelled={this.purchaseCancelHandler}
-            purcahseContinued={this.purchaseContinueHandler}
-            price={this.state.totalPrice}
-          />
+          {this.state.loading ? (
+            <Spinner />
+          ) : (
+            <OrderSummary
+              ingredients={this.state.ingredients}
+              purchaseCancelled={this.purchaseCancelHandler}
+              purcahseContinued={this.purchaseContinueHandler}
+              price={this.state.totalPrice}
+            />
+          )}
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
