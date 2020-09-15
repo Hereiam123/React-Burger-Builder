@@ -17,17 +17,20 @@ const INGREDIENT_PRICES = {
 
 class BurgerBuilder extends Component {
   state = {
-    ingredients: {
-      salad: 0,
-      bacon: 0,
-      cheese: 0,
-      meat: 0,
-    },
+    ingredients: null,
     totalPrice: 0,
     purchasable: false,
     purchasing: false,
     loading: false,
   };
+
+  componentDidMount() {
+    axios
+      .get("https://burger-builder-7be11.firebaseio.com/ingredients.json")
+      .then((response) => {
+        this.setState({ ingredients: response.data });
+      });
+  }
 
   updatePurchaseState = () => {
     if (this.state.totalPrice > 0) {
@@ -110,23 +113,29 @@ class BurgerBuilder extends Component {
           {this.state.loading ? (
             <Spinner />
           ) : (
-            <OrderSummary
-              ingredients={this.state.ingredients}
-              purchaseCancelled={this.purchaseCancelHandler}
-              purcahseContinued={this.purchaseContinueHandler}
-              price={this.state.totalPrice}
-            />
+            this.state.ingredients && (
+              <OrderSummary
+                ingredients={this.state.ingredients}
+                purchaseCancelled={this.purchaseCancelHandler}
+                purcahseContinued={this.purchaseContinueHandler}
+                price={this.state.totalPrice}
+              />
+            )
           )}
         </Modal>
-        <Burger ingredients={this.state.ingredients} />
-        <BuildControls
-          price={this.state.totalPrice}
-          ingredientAdded={this.addIngredient}
-          ingredientRemoved={this.removeIngredient}
-          disabled={disabled}
-          purchasable={this.state.purchasable}
-          ordering={this.purchaseHandler}
-        />
+        {this.state.ingredients && (
+          <>
+            <Burger ingredients={this.state.ingredients} />
+            <BuildControls
+              price={this.state.totalPrice}
+              ingredientAdded={this.addIngredient}
+              ingredientRemoved={this.removeIngredient}
+              disabled={disabled}
+              purchasable={this.state.purchasable}
+              ordering={this.purchaseHandler}
+            />
+          </>
+        )}
       </>
     );
   }
