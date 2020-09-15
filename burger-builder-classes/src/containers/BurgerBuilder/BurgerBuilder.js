@@ -87,19 +87,9 @@ class BurgerBuilder extends Component {
       ingredients: this.state.ingredients,
       price: this.state.totalPrice,
     };
-    axios
-      .post("/orders.json", order)
-      .then((response) => {
-        console.log(response);
-        alert("You ordered!");
-      })
-      .catch((e) => {
-        console.log(e);
-        alert("Error in ordering!");
-      })
-      .finally(() => {
-        this.setState({ loading: false, purchasing: false });
-      });
+    axios.post("/orders.json", order).finally(() => {
+      this.setState({ loading: false, purchasing: false });
+    });
   };
 
   render() {
