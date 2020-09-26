@@ -1,16 +1,21 @@
 import React from "react";
 import Burger from "../../Burger/Burger";
 import Button from "../../UI/Button/Button";
+import styles from "./CheckoutSummary.module.css";
 
 const CheckoutSummary = ({ ingredients }) => {
   return (
-    <div>
+    <div className={styles.checkoutSummary}>
       <h1>Checkout Summary</h1>
       <div style={{ width: "300px", height: "300px", margin: "auto" }}>
         <Burger ingredients={ingredients} />
       </div>
-      <Button btnType="Danger">Cancel</Button>
-      <Button btnType="Success">Continue</Button>
+      <Button btnType="Danger" clicked>
+        Cancel
+      </Button>
+      <Button btnType="Success" clicked>
+        Continue
+      </Button>
     </div>
   );
 };
