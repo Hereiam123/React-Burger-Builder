@@ -42,17 +42,6 @@ class BurgerBuilder extends Component {
     } else {
       this.setState({ purchasable: false });
     }
-    /*const ingredients = {
-      ...this.state.ingredients,
-    };
-    const sum = Object.keys(ingredients)
-      .map((ingredient) => {
-        return ingredients[ingredient];
-      })
-      .reduce((sum, el) => {
-        return sum + el;
-      }, 0);
-    this.setState({ purchasable: sum > 0 });*/
   };
 
   addIngredient = (type) => {
@@ -97,6 +86,7 @@ class BurgerBuilder extends Component {
           encodeURIComponent(this.state.ingredients[i])
       );
     }
+    queryParams.push("price=" + this.state.totalPrice);
     const queryString = queryParams.join("&");
     this.props.history.push({
       pathname: "/checkout",
