@@ -8,9 +8,7 @@ const NavigationItems = () => {
       <NavigationItem exact link="/">
         Burger Builder
       </NavigationItem>
-      <NavigationItem exact link="/orders">
-        Orders
-      </NavigationItem>
+      <NavigationItem link="/orders">Orders</NavigationItem>
     </ul>
   );
 };
