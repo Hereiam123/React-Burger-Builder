@@ -7,11 +7,49 @@ import axios from "../../../axiosInstance";
 
 class ContactData extends Component {
   state = {
-    userName: "",
-    email: "",
-    address: {
-      street: "",
-      postalCode: "",
+    orderForm: {
+      name: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Name",
+        },
+        value: "",
+      },
+      email: {
+        elementType: "input",
+        elementConfig: {
+          type: "email",
+          placeholder: "Your Email",
+        },
+        value: "",
+      },
+      street: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Street Address",
+        },
+        value: "",
+      },
+      postalCode: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Zip Code",
+        },
+        value: "",
+      },
+      deliveryMethod: {
+        elementType: "select",
+        elementConfig: {
+          options: [
+            { value: "2 day", display: "2 Day" },
+            { value: "1 hour", display: "1 Hour" },
+          ],
+        },
+        value: "",
+      },
     },
     loading: false,
   };
@@ -35,6 +73,13 @@ class ContactData extends Component {
   };
 
   render() {
+    const formElementsArray = [];
+    for (let key in this.state.orderForm) {
+      formElementsArray.push({
+        id: key,
+        config: this.state.orderForm[key],
+      });
+    }
     return (
       <>
         {this.state.loading ? (
@@ -43,25 +88,16 @@ class ContactData extends Component {
           <div className={styles.contactData}>
             <h4>Contact Form</h4>
             <form>
-              <Input type="text" label="Name" name="name" placeholder="Name" />
-              <Input
-                type="email"
-                label="Email"
-                name="email"
-                placeholder="Email"
-              />
-              <Input
-                type="textarea"
-                label="Street Address"
-                name="street"
-                placeholder="Street Address"
-              />
-              <Input
-                type="text"
-                label="Postal Code"
-                name="postal"
-                placeholder="Postal Code"
-              />
+              {formElementsArray.map((formElement) => {
+                return (
+                  <Input
+                    key={formElement.id}
+                    elementType={formElement.config.elementType}
+                    elementConfig={formElement.config.elementConfig}
+                    value={formElement.config.value}
+                  />
+                );
+              })}
               <Button btnType="success" clicked={this.orderHandler}>
                 ORDER
               </Button>
