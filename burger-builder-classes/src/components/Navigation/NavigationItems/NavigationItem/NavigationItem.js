@@ -6,7 +6,9 @@ const NavigationItem = (props) => {
   return (
     <div>
       <li className={styles.navigationItem}>
-        <NavLink to={props.link}>{props.children}</NavLink>
+        <NavLink to={props.link} activeClassName={styles.active}>
+          {props.children}
+        </NavLink>
       </li>
     </div>
   );
