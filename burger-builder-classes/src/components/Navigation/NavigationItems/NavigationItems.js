@@ -5,8 +5,12 @@ import styles from "./NavigationItems.module.css";
 const NavigationItems = () => {
   return (
     <ul className={styles.navigationItems}>
-      <NavigationItem link="/">Burger Builder</NavigationItem>
-      <NavigationItem link="/orders">Orders</NavigationItem>
+      <NavigationItem exact link="/">
+        Burger Builder
+      </NavigationItem>
+      <NavigationItem exact link="/orders">
+        Orders
+      </NavigationItem>
     </ul>
   );
 };
