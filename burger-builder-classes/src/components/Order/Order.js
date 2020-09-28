@@ -1,5 +1,4 @@
 import React from "react";
-import Ingredient from "../Burger/Ingredient/Ingredient";
 import styles from "./Order.module.css";
 
 const Order = ({ ingredients, price }) => {
