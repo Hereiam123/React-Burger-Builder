@@ -3,7 +3,7 @@ import Ingredient from "./Ingredient/Ingredient";
 import styles from "./Burger.module.css";
 
 const Burger = (props) => {
-  console.log(props);
+  console.log("Render");
   /*Map out ingredients from props above into ingredient components*/
   let ingredients = Object.keys(props.ingredients)
     .map((ingKey) => {
@@ -12,6 +12,8 @@ const Burger = (props) => {
       });
     })
     .flat();
+  console.log("Ingredients");
+  console.log(ingredients);
   if (!ingredients.length) {
     ingredients = <p>Please add wanted ingredients!</p>;
   }

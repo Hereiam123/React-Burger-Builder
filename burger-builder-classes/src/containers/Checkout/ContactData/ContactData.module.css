@@ -4,6 +4,15 @@
   text-align: center;
 }
 
+form {
+  text-align: center;
+}
+
+input {
+  display: block;
+  margin: auto;
+}
+
 @media screen and (min-width: 600px) {
   .contactData {
     width: 500px;
