@@ -5,22 +5,44 @@ const Input = (props) => {
   let inputElement = null;
   switch (props.elementType) {
     case "input":
-      inputElement = <input {...props.elementConfig} value={props.value} />;
+      inputElement = (
+        <input
+          {...props.elementConfig}
+          value={props.value}
+          onChange={props.changeHandler}
+        />
+      );
       break;
     case "textarea":
-      inputElement = <textarea {...props.elementConfig} value={props.value} />;
+      inputElement = (
+        <textarea
+          {...props.elementConfig}
+          value={props.value}
+          onChange={props.changeHandler}
+        />
+      );
       break;
     case "select":
       inputElement = (
-        <select value={props.value}>
+        <select value={props.value} onChange={props.changeHandler}>
           {props.elementConfig.options.map((option) => {
-            return <option value={option.value}>{option.display}</option>;
+            return (
+              <option key={option.value} value={option.value}>
+                {option.display}
+              </option>
+            );
           })}
         </select>
       );
       break;
     default:
-      inputElement = <input {...props.elementConfig} value={props.value} />;
+      inputElement = (
+        <input
+          {...props.elementConfig}
+          value={props.value}
+          onChange={props.changeHandler}
+        />
+      );
   }
   return (
     <div className={styles.input}>
