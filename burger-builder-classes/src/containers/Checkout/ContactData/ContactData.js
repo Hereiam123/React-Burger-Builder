@@ -51,7 +51,7 @@ class ContactData extends Component {
                 placeholder="Email"
               />
               <Input
-                type="text"
+                type="textarea"
                 label="Street Address"
                 name="street"
                 placeholder="Street Address"
