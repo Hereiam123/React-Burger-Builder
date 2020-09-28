@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
 import ContactData from "./ContactData/ContactData";
+import Spinner from "../../components/UI/Spinner/Spinner";
 import { Route } from "react-router-dom";
 
 class Checkout extends Component {
