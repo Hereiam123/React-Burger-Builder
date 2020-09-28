@@ -11,7 +11,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
   outline: none;
   border: 1px solid #ccc;
   background-color: white;
@@ -22,7 +23,8 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   outline: none;
   background-color: #ccc;
 }
