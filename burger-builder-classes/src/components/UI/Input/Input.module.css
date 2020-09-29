@@ -28,3 +28,8 @@ select:focus {
   outline: none;
   background-color: #ccc;
 }
+
+.invalid {
+  border: 1px solid red;
+  background-color: salmon;
+}

@@ -3,10 +3,17 @@ import styles from "./Input.module.css";
 
 const Input = (props) => {
   let inputElement = null;
+  const inputClasses = [styles.input];
+
+  if (props.invalid && props.shouldValidate && props.touched) {
+    inputClasses.push(styles.invalid);
+  }
+
   switch (props.elementType) {
     case "input":
       inputElement = (
         <input
+          className={inputClasses.join(" ")}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changeHandler}
@@ -38,6 +45,7 @@ const Input = (props) => {
     default:
       inputElement = (
         <input
+          className={inputClasses}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changeHandler}
