@@ -48,7 +48,7 @@ class ContactData extends Component {
             { value: "1 hour", display: "1 Hour" },
           ],
         },
-        value: "",
+        value: "2 day",
       },
     },
     loading: false,
