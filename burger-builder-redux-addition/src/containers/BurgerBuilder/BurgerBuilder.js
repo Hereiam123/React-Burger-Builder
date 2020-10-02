@@ -128,8 +128,8 @@ class BurgerBuilder extends Component {
             <Burger ingredients={this.props.ings} />
             <BuildControls
               price={this.state.totalPrice}
-              ingredientAdded={this.addIngredient}
-              ingredientRemoved={this.removeIngredient}
+              ingredientAdded={this.props.onIngredientAdded}
+              ingredientRemoved={this.props.onIngredientRemoved}
               disabled={disabled}
               purchasable={this.state.purchasable}
               ordering={this.purchaseHandler}
