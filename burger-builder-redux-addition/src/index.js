@@ -6,11 +6,14 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import * as serviceWorker from "./serviceWorker";
-import reducer from "./store/reducer";
+import burgerBuilderReducer from "./store/reducers/burdgerBuilder";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware()));
+const store = createStore(
+  burgerBuilderReducer,
+  composeEnhancers(applyMiddleware())
+);
 
 ReactDOM.render(
   <React.StrictMode>
