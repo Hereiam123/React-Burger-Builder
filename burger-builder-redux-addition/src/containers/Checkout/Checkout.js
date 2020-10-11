@@ -16,7 +16,7 @@ class Checkout extends Component {
   render() {
     return (
       <div>
-        {this.props.ings ? (
+        {this.props.ings && !this.props.purchased ? (
           <>
             <CheckoutSummary
               ingredients={this.props.ings}
@@ -39,6 +39,7 @@ class Checkout extends Component {
 const mapStateToProps = (state) => {
   return {
     ings: state.burgerBuilder.ingredients,
+    purchased: state.order.purchased,
   };
 };
 
