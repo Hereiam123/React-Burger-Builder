@@ -11,7 +11,6 @@ import axios from "../../axiosInstance";
 
 class BurgerBuilder extends Component {
   state = {
-    purchasable: false,
     purchasing: false,
     loading: false,
     error: false,
@@ -27,14 +26,6 @@ class BurgerBuilder extends Component {
         this.setState({ error: true });
       });*/
   }
-
-  updatePurchaseState = () => {
-    if (this.props.price > 0) {
-      this.setState({ purchasable: true });
-    } else {
-      this.setState({ purchasable: false });
-    }
-  };
 
   purchaseHandler = () => {
     this.setState({ purchasing: true });
@@ -95,7 +86,7 @@ class BurgerBuilder extends Component {
               ingredientAdded={this.props.onIngredientAdded}
               ingredientRemoved={this.props.onIngredientRemoved}
               disabled={disabled}
-              purchasable={this.state.purchasable}
+              purchasable={this.props.price > 0}
               ordering={this.purchaseHandler}
             />
           </>

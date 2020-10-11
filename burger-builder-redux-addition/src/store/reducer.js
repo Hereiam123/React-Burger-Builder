@@ -7,7 +7,7 @@ const initialState = {
     meat: 1,
     cheese: 0,
   },
-  totalPrice: 0,
+  totalPrice: 1.5,
 };
 
 //Ingredient Prices for burger item
