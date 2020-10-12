@@ -19,8 +19,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        authToken: action.authData.idToken,
-        userId: action.authData.displayName,
+        authToken: action.idToken,
+        userId: action.displayName,
         error: null,
       };
     case Types.AUTH_FAILED:

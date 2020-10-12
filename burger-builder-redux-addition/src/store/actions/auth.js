@@ -8,10 +8,11 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = (authData) => {
+export const authSuccess = (idToken, userId) => {
   return {
     type: Types.AUTH_SUCCESS,
-    authData,
+    idToken,
+    userId,
   };
 };
 
@@ -38,7 +39,7 @@ export const auth = (email, password, isSignUp) => {
     axios
       .post(url + firebaseAPIKey, authData)
       .then((response) => {
-        dispatch(authSuccess(response.data));
+        dispatch(authSuccess(response.data.idToken, response.data.displayName));
       })
       .catch((error) => {
         console.log(error);
