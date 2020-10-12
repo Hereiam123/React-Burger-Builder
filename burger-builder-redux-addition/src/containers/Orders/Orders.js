@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Order from "../../components/Order/Order";
+import Spinner from "../../components/UI/Spinner/Spinner";
 import axios from "../../axiosInstance";
 import withErroHandler from "../withErrorHandler/withErrorHandler";
 import * as orderActions from "../../store/actions/order";
@@ -12,15 +13,19 @@ class Orders extends Component {
   render() {
     return (
       <div>
-        {this.props.orders.map((order) => {
-          return (
-            <Order
-              key={order.id}
-              ingredients={order.ingredients}
-              price={+order.price}
-            />
-          );
-        })}
+        {!this.props.loading ? (
+          this.props.orders.map((order) => {
+            return (
+              <Order
+                key={order.id}
+                ingredients={order.ingredients}
+                price={+order.price}
+              />
+            );
+          })
+        ) : (
+          <Spinner />
+        )}
       </div>
     );
   }
