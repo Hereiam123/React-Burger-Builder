@@ -42,7 +42,6 @@ class Auth extends Component {
     if (rules.required) {
       isValid = value.trim() !== "" && isValid;
     }
-    console.log(rules);
 
     if (rules.minLength) {
       isValid = value.length >= rules.minLength && isValid;
