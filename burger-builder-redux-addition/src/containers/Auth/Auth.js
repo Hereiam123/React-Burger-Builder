@@ -122,7 +122,7 @@ class Auth extends Component {
                   />
                 );
               })}
-              {this.props.error ? <p>{this.props.error}</p> : null}
+              {this.props.error ? <p>{this.props.error.message}</p> : null}
               <Button btnType="success" disabled={!this.state.formIsValid}>
                 Submit
               </Button>
