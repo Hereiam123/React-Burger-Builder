@@ -15,14 +15,19 @@ const reducer = (state = initialState, action) => {
         loading: true,
       };
     case Types.AUTH_SUCCESS:
+      console.log(action);
       return {
         ...state,
         loading: false,
+        authToken: action.authData.idToken,
+        userId: action.authData.displayName,
+        error: null,
       };
     case Types.AUTH_FAILED:
       return {
         ...state,
         loading: false,
+        error: action.error,
       };
     default:
       return state;

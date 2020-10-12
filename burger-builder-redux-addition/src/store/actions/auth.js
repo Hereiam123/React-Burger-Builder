@@ -38,7 +38,7 @@ export const auth = (email, password, isSignUp) => {
     axios
       .post(url + firebaseAPIKey, authData)
       .then((response) => {
-        dispatch(authSuccess(response));
+        dispatch(authSuccess(response.data));
       })
       .catch((error) => {
         console.log(error);
