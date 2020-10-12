@@ -1,0 +1,15 @@
+.auth {
+  margin: 20px auto;
+  width: 80%;
+  text-align: center;
+}
+
+form {
+  text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+  .auth {
+    width: 500px;
+  }
+}
