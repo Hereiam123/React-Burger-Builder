@@ -12,7 +12,7 @@ const Toolbar = ({ openHandler }) => {
         <Logo />
       </div>
       <nav className={styles.desktopOnly}>
-        <NavigationItems />
+        <NavigationItems isAuthenticated={this.props.isAuth} />
       </nav>
     </header>
   );
