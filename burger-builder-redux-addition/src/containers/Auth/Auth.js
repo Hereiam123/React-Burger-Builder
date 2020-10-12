@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import Spinner from "../../components/UI/Spinner/Spinner";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
+import * as authActions from "../../store/actions/auth";
 import styles from "./Auth.module.css";
 
 class Auth extends Component {
@@ -72,6 +75,14 @@ class Auth extends Component {
     this.setState({ authForm: updatedAuthForm, formIsValid });
   };
 
+  onSubmitHandler = (event) => {
+    event.preventDefault();
+    this.props.onAuthSubmit(
+      this.state.authForm.email.value,
+      this.state.authForm.password.value
+    );
+  };
+
   render() {
     const formElementsArray = [];
     for (let key in this.state.authForm) {
@@ -81,31 +92,51 @@ class Auth extends Component {
       });
     }
     return (
-      <div className={styles.auth}>
-        <form>
-          {formElementsArray.map((formElement) => {
-            return (
-              <Input
-                key={formElement.id}
-                elementType={formElement.config.elementType}
-                elementConfig={formElement.config.elementConfig}
-                value={formElement.config.value}
-                invalid={!formElement.config.valid}
-                shouldValidate={formElement.config.validation}
-                touched={formElement.config.touched}
-                changeHandler={(event) =>
-                  this.inputChangeHandler(event, formElement.id)
-                }
-              />
-            );
-          })}
-          <Button btnType="success" disabled={!this.state.formIsValid}>
-            Sign Up
-          </Button>
-        </form>
-      </div>
+      <>
+        {this.props.loading ? (
+          <Spinner />
+        ) : (
+          <div className={styles.auth}>
+            <form onSubmit={this.onSubmitHandler}>
+              {formElementsArray.map((formElement) => {
+                return (
+                  <Input
+                    key={formElement.id}
+                    elementType={formElement.config.elementType}
+                    elementConfig={formElement.config.elementConfig}
+                    value={formElement.config.value}
+                    invalid={!formElement.config.valid}
+                    shouldValidate={formElement.config.validation}
+                    touched={formElement.config.touched}
+                    changeHandler={(event) =>
+                      this.inputChangeHandler(event, formElement.id)
+                    }
+                  />
+                );
+              })}
+              <Button btnType="success" disabled={!this.state.formIsValid}>
+                Sign Up
+              </Button>
+            </form>
+          </div>
+        )}
+      </>
     );
   }
 }
 
-export default Auth;
+const mapStateToProps = (state) => {
+  return {
+    loading: state.auth.loading,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAuthSubmit: (email, password) => {
+      dispatch(authActions.auth(email, password));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Auth);
