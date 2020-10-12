@@ -4,7 +4,7 @@ import NavigationItems from "../NavigationItems/NavigationItems";
 import styles from "./Sidebar.module.css";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 
-const Sidebar = ({ open, closedHandler }) => {
+const Sidebar = ({ open, closedHandler, isAuth }) => {
   let attachClass = [styles.sidebar, styles.close];
   if (open) {
     attachClass = [styles.sidebar, styles.open];
@@ -17,7 +17,7 @@ const Sidebar = ({ open, closedHandler }) => {
           <Logo />
         </div>
         <nav>
-          <NavigationItems isAuthenticated={this.props.isAuth} />
+          <NavigationItems isAuthenticated={isAuth} />
         </nav>
       </div>
     </>

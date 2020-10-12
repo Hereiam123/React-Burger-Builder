@@ -4,7 +4,7 @@ import Logo from "../../Logo/Logo";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import SidebarToggle from "../Sidebar/SidebarToggle/SidebarToggle";
 
-const Toolbar = ({ openHandler }) => {
+const Toolbar = ({ openHandler, isAuth }) => {
   return (
     <header className={styles.toolbar}>
       <SidebarToggle clicked={openHandler} />
@@ -12,7 +12,7 @@ const Toolbar = ({ openHandler }) => {
         <Logo />
       </div>
       <nav className={styles.desktopOnly}>
-        <NavigationItems isAuthenticated={this.props.isAuth} />
+        <NavigationItems isAuthenticated={isAuth} />
       </nav>
     </header>
   );
