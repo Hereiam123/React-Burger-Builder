@@ -122,6 +122,7 @@ class Auth extends Component {
                   />
                 );
               })}
+              {this.props.error ? <p>{this.props.error}</p> : null}
               <Button btnType="success" disabled={!this.state.formIsValid}>
                 Submit
               </Button>
@@ -139,6 +140,7 @@ class Auth extends Component {
 const mapStateToProps = (state) => {
   return {
     loading: state.auth.loading,
+    error: state.auth.error,
   };
 };
 

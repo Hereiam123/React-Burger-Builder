@@ -15,7 +15,6 @@ const reducer = (state = initialState, action) => {
         loading: true,
       };
     case Types.AUTH_SUCCESS:
-      console.log(action);
       return {
         ...state,
         loading: false,
@@ -27,7 +26,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.error,
+        error: action.error.message,
       };
     default:
       return state;

@@ -42,7 +42,6 @@ export const auth = (email, password, isSignUp) => {
         dispatch(authSuccess(response.data.idToken, response.data.displayName));
       })
       .catch((error) => {
-        console.log(error);
         dispatch(authFail(error));
       });
   };
