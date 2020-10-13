@@ -87,14 +87,14 @@ export const authCheckState = () => {
       const expirationTime = new Date(
         localStorage.getItem("burgerTokenExpirationDate")
       );
-      if (expirationTime > new Date()) {
+      if (expirationTime <= new Date()) {
         dispatch(logout());
       } else {
         const userId = localStorage.getItem("burgerUserId");
         dispatch(authSuccess(token, userId));
         dispatch(
           checkAuthTimeout(
-            expirationTime.getSeconds() - new Date().getSeconds()
+            (expirationTime.getTime() - new Date().getTime()) / 1000
           )
         );
       }
