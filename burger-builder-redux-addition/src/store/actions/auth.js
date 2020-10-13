@@ -24,6 +24,8 @@ export const authFail = (error) => {
 };
 
 export const logout = () => {
+  localStorage.removeItem("burgerToken");
+  localStorage.removeItem("burgerTokenExpirationDate");
   return {
     type: Types.AUTH_LOGOUT,
   };
@@ -53,6 +55,11 @@ export const auth = (email, password, isSignUp) => {
     axios
       .post(url + firebaseAPIKey, authData)
       .then((response) => {
+        const expirationDate = new Date(
+          new Date().getTime() + response.data.expiresIn * 1000
+        );
+        localStorage.setItem("burgerToken", response.data.idToken);
+        localStorage.setItem("burgerTokenExpirationDate", expirationDate);
         dispatch(authSuccess(response.data.idToken, response.data.displayName));
         dispatch(checkAuthTimeout(response.data.expiresIn));
       })
