@@ -12,7 +12,7 @@ const Sidebar = ({ open, closedHandler, isAuth }) => {
   return (
     <>
       <Backdrop show={open} clicked={closedHandler} />
-      <div className={attachClass.join(" ")}>
+      <div className={attachClass.join(" ")} onClick={closedHandler}>
         <div className={styles.logo}>
           <Logo />
         </div>
