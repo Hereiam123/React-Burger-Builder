@@ -61,8 +61,8 @@ export const auth = (email, password, isSignUp) => {
         );
         localStorage.setItem("burgerToken", response.data.idToken);
         localStorage.setItem("burgerTokenExpirationDate", expirationDate);
-        localStorage.setItem("burgerUserId", response.data.displayName);
-        dispatch(authSuccess(response.data.idToken, response.data.displayName));
+        localStorage.setItem("burgerUserId", response.data.localId);
+        dispatch(authSuccess(response.data.idToken, response.data.localId));
         dispatch(checkAuthTimeout(response.data.expiresIn));
       })
       .catch((error) => {

@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         authToken: action.idToken,
-        userId: action.displayName,
+        userId: action.userId,
         error: null,
       };
     case Types.AUTH_FAILED:
