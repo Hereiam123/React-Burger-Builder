@@ -9,6 +9,7 @@ import withErrorHandler from "../withErrorHandler/withErrorHandler";
 import axios from "../../axiosInstance";
 import * as burgerBuilderActions from "../../store/actions/burgerBuilder";
 import * as orderActions from "../../store/actions/order";
+import * as authActions from "../../store/actions/auth";
 
 class BurgerBuilder extends Component {
   state = {
@@ -23,6 +24,7 @@ class BurgerBuilder extends Component {
     if (this.props.isAuthenticated) {
       this.setState({ purchasing: true });
     } else {
+      this.props.onSetRedirectPath("/checkout");
       this.props.history.push("/auth");
     }
   };
@@ -104,6 +106,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onInitPurchase: () => {
       dispatch(orderActions.purchaseInit());
+    },
+    onSetRedirectPath: (path) => {
+      dispatch(authActions.setAuthRedirectPath(path));
     },
   };
 };
