@@ -11,7 +11,7 @@ import * as burgerBuilderActions from "../../store/actions/burgerBuilder";
 import * as orderActions from "../../store/actions/order";
 import * as authActions from "../../store/actions/auth";
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
   state = {
     purchasing: false,
   };
