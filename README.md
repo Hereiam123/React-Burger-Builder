@@ -10,3 +10,5 @@ Using:
 - Redux
 - Axios
 - Firebase
+- Jest
+- Enzyme
