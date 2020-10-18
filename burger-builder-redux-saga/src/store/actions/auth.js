@@ -57,25 +57,7 @@ export const setAuthRedirectPath = (path) => {
 };
 
 export const authCheckState = () => {
-  return (dispatch) => {
-    const token = localStorage.getItem("burgerToken");
-    if (!token) {
-      dispatch(logout());
-    } else {
-      const expirationTime = new Date(
-        localStorage.getItem("burgerTokenExpirationDate")
-      );
-      if (expirationTime <= new Date()) {
-        dispatch(logout());
-      } else {
-        const userId = localStorage.getItem("burgerUserId");
-        dispatch(authSuccess(token, userId));
-        dispatch(
-          checkAuthTimeout(
-            (expirationTime.getTime() - new Date().getTime()) / 1000
-          )
-        );
-      }
-    }
+  return {
+    type: Types.AUTH_CHECK_INITIAL,
   };
 };
