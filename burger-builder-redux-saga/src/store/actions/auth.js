@@ -24,19 +24,21 @@ export const authFail = (error) => {
 };
 
 export const logout = () => {
-  localStorage.removeItem("burgerToken");
-  localStorage.removeItem("burgerTokenExpirationDate");
-  localStorage.removeItem("burgerUserId");
+  return {
+    type: Types.AUTH_INIIATE_LOGOUT,
+  };
+};
+
+export const logoutSucceed = () => {
   return {
     type: Types.AUTH_LOGOUT,
   };
 };
 
 export const checkAuthTimeout = (expirationTime) => {
-  return (dispatch) => {
-    setTimeout(() => {
-      dispatch(logout());
-    }, expirationTime * 1000);
+  return {
+    type: Types.AUTH_CHECK_TIMEOUT,
+    expirationTime: expirationTime,
   };
 };
 
