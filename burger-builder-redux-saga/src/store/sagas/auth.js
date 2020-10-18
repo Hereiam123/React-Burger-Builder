@@ -1,5 +1,5 @@
 import { delay } from "redux-saga/effects";
-import { put } from "redux-saga/effects";
+import { put, call } from "redux-saga/effects";
 import { firebaseAPIKey } from "../../firebaseAuthKey";
 import axios from "axios";
 import {
@@ -36,7 +36,7 @@ export function* authSaga(action) {
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
   }
   try {
-    const response = yield axios.post(url + firebaseAPIKey, authData);
+    const response = yield call(axios.post, url + firebaseAPIKey, authData);
     const expirationDate = yield new Date(
       new Date().getTime() + response.data.expiresIn * 1000
     );
@@ -56,7 +56,7 @@ export function* authCheckStateSaga() {
     yield put(logout());
   } else {
     const expirationTime = yield new Date(
-      localStorage.getItem("burgerTokenExpirationDate")
+      yield localStorage.getItem("burgerTokenExpirationDate")
     );
     if (expirationTime <= new Date()) {
       yield put(logout());

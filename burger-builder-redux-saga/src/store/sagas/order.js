@@ -4,12 +4,13 @@ import {
   purchaseBurgerSuccess,
   purchaseBurgerFailed,
 } from "../actions/order";
-import { put } from "redux-saga/effects";
+import { put, call } from "redux-saga/effects";
 
 export function* purchaseBurgerSaga(action) {
   yield put(purchaseBurgerStart());
   try {
-    const response = yield axios.post(
+    const response = yield call(
+      axios.post,
       "/orders.json?auth=" + action.token,
       action.orderData
     );
