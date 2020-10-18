@@ -1,6 +1,4 @@
 import * as Types from "../types/Types";
-import { firebaseAPIKey } from "../../firebaseAuthKey";
-import axios from "axios";
 
 export const authStart = () => {
   return {
@@ -43,33 +41,11 @@ export const checkAuthTimeout = (expirationTime) => {
 };
 
 export const auth = (email, password, isSignUp) => {
-  return (dispatch) => {
-    dispatch(authStart());
-    const authData = {
-      email,
-      password,
-      returnSecureToken: true,
-    };
-    let url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
-    if (!isSignUp) {
-      url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
-    }
-    axios
-      .post(url + firebaseAPIKey, authData)
-      .then((response) => {
-        const expirationDate = new Date(
-          new Date().getTime() + response.data.expiresIn * 1000
-        );
-        localStorage.setItem("burgerToken", response.data.idToken);
-        localStorage.setItem("burgerTokenExpirationDate", expirationDate);
-        localStorage.setItem("burgerUserId", response.data.localId);
-        dispatch(authSuccess(response.data.idToken, response.data.localId));
-        dispatch(checkAuthTimeout(response.data.expiresIn));
-      })
-      .catch((error) => {
-        dispatch(authFail(error));
-      });
+  return {
+    type: Types.AUTH_USER,
+    email,
+    password,
+    isSignUp,
   };
 };
 
