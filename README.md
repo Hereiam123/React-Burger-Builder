@@ -12,3 +12,4 @@ Using:
 - Firebase
 - Jest
 - Enzyme
+- Redux Saga
