@@ -57,21 +57,9 @@ export const fetchOrdersStart = () => {
 };
 
 export const fetchOrders = (token, userId) => {
-  return (disptach) => {
-    disptach(fetchOrdersStart());
-    const queryParams =
-      "?auth=" + token + '&orderBy="userId"&equalTo=' + '"' + userId + '"';
-    axios
-      .get("/orders.json" + queryParams)
-      .then((response) => {
-        const fetchedOrders = [];
-        for (let key in response.data) {
-          fetchedOrders.push({ ...response.data[key], id: key });
-        }
-        disptach(fetchOrdersSuccess(fetchedOrders));
-      })
-      .catch((err) => {
-        disptach(fetchOrdersFail(err));
-      });
+  return {
+    type: Types.FETCH_ORDERS,
+    token,
+    userId,
   };
 };
