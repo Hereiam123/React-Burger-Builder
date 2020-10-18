@@ -1,5 +1,4 @@
 import * as Types from "../types/Types";
-import axios from "../../axiosInstance";
 
 export const purchaseBurgerSuccess = (id, order) => {
   return {
