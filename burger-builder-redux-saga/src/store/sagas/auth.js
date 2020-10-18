@@ -46,7 +46,6 @@ export function* authSaga(action) {
     yield put(authSuccess(response.data.idToken, response.data.localId));
     yield put(checkAuthTimeout(response.data.expiresIn));
   } catch (e) {
-    console.log(e);
-    yield put(authFail(e));
+    yield put(authFail(e.response.data.error));
   }
 }
