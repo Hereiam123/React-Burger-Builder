@@ -1,0 +1,31 @@
+.toolbar {
+  height: 56px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ffc72c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 90;
+  box-sizing: border-box;
+}
+
+.logo {
+  height: 80%;
+}
+
+.toolbar nav {
+  height: 100%;
+}
+
+@media screen and (max-width: 499px) {
+  .desktopOnly {
+    display: none;
+  }
+  .logo {
+    display: none;
+  }
+}
