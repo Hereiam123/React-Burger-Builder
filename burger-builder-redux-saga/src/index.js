@@ -10,7 +10,7 @@ import createSagaMiddleware from "redux-saga";
 import burgerBuilderReducer from "./store/reducers/burdgerBuilder";
 import orderReducer from "./store/reducers/order";
 import authReducer from "./store/reducers/auth";
-import { watchAuth, watchBurgerBuilder } from "./store/sagas";
+import { watchAuth, watchBurgerBuilder, watchOrder } from "./store/sagas";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -29,6 +29,7 @@ const store = createStore(
 
 sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchBurgerBuilder);
+sagaMiddleware.run(watchOrder);
 
 ReactDOM.render(
   <React.StrictMode>

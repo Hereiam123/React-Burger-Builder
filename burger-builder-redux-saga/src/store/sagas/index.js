@@ -6,6 +6,7 @@ import {
   authCheckStateSaga,
 } from "./auth";
 import { initIngredientsSaga } from "./burgerBuilder";
+import { purchaseBurgerSaga } from "./order";
 import * as actionTypes from "../types/Types";
 
 export function* watchAuth() {
@@ -17,4 +18,8 @@ export function* watchAuth() {
 
 export function* watchBurgerBuilder() {
   yield takeEvery(actionTypes.INIT_SET_INGREDIENTS, initIngredientsSaga);
+}
+
+export function* watchOrder() {
+  yield takeEvery(actionTypes.PURCHASE_BURGER, purchaseBurgerSaga);
 }

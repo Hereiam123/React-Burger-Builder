@@ -23,16 +23,10 @@ export const purchaseBurgerStart = () => {
 };
 
 export const purchaseBurger = (orderData, token) => {
-  return (disptach) => {
-    disptach(purchaseBurgerStart());
-    axios
-      .post("/orders.json?auth=" + token, orderData)
-      .then((response) => {
-        disptach(purchaseBurgerSuccess(response.data.name, orderData));
-      })
-      .catch((err) => {
-        disptach(purchaseBurgerFailed(err));
-      });
+  return {
+    type: Types.PURCHASE_BURGER,
+    orderData,
+    token,
   };
 };
 
