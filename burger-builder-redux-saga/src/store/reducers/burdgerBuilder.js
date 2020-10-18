@@ -44,7 +44,7 @@ const reducer = (state = initialState, action) => {
     case Types.SET_INGREDIENTS:
       return {
         ...state,
-        ingredients: action.payload.ingredients,
+        ingredients: action.ingredients,
         totalPrice: 1.5,
         error: false,
         building: false,

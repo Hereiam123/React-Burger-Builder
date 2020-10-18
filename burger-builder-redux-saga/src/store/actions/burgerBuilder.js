@@ -1,5 +1,4 @@
 import * as Types from "../types/Types";
-import axios from "../../axiosInstance";
 
 export const addIngredient = (name) => {
   return {
@@ -15,21 +14,21 @@ export const removeIngredient = (name) => {
   };
 };
 
+export const fetchIngredientFailed = () => {
+  return {
+    type: Types.FETCH_INGREDIENTS_FAILED,
+  };
+};
+
+export const setIngredients = (ingredients) => {
+  return {
+    type: Types.SET_INGREDIENTS,
+    ingredients,
+  };
+};
+
 export const initIngredients = () => {
-  return (dispatch) => {
-    axios
-      .get("/ingredients.json")
-      .then((response) => {
-        dispatch({
-          type: Types.SET_INGREDIENTS,
-          payload: { ingredients: response.data },
-        });
-      })
-      .catch((e) => {
-        dispatch({
-          type: Types.FETCH_INGREDIENTS_FAILED,
-        });
-      });
-    return;
+  return {
+    type: Types.INIT_SET_INGREDIENTS,
   };
 };
