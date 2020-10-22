@@ -10,6 +10,7 @@ const Orders = (props) => {
   useEffect(() => {
     props.onInitFetchOrders(props.authToken, props.userId);
   }, []);
+
   return (
     <div>
       {!props.loading ? (
