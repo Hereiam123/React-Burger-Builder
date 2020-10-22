@@ -7,7 +7,7 @@ import { put, call } from "redux-saga/effects";
 
 export function* initIngredientsSaga() {
   try {
-    const response = yield call(axios.get, "/ingredients.json");
+    const response = yield call(axios.get, "/ingredients.jon");
     yield put(setIngredients(response.data));
   } catch (e) {
     yield put(fetchIngredientFailed());
