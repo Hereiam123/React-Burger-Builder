@@ -1,40 +1,35 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import styles from "./Layout.module.css";
 import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 import Sidebar from "../../components/Navigation/Sidebar/Sidebar";
 
-class Layout extends Component {
-  state = {
-    sideBarOpen: false,
+const Layout = (props) => {
+  const [sideBarOpen, setSideBarOpen] = useState(false);
+
+  const sideDrawerCloseHandler = () => {
+    setSideBarOpen(false);
   };
 
-  sideDrawerCloseHandler = () => {
-    this.setState({ sideBarOpen: false });
+  const sideDrawerOpenHandler = () => {
+    setSideBarOpen(true);
   };
 
-  sideDrawerOpenHandler = () => {
-    this.setState({ sideBarOpen: true });
-  };
-
-  render() {
-    return (
-      <>
-        <Sidebar
-          closedHandler={this.sideDrawerCloseHandler}
-          open={this.state.sideBarOpen}
-          isAuth={this.props.isAuthenticated}
-        />
-        <Toolbar
-          openHandler={this.sideDrawerOpenHandler}
-          isAuth={this.props.isAuthenticated}
-        />
-        <div> Sidedrawer, Backdrop</div>
-        <main className={styles.content}>{this.props.children}</main>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Sidebar
+        closedHandler={sideDrawerCloseHandler}
+        open={sideBarOpen}
+        isAuth={props.isAuthenticated}
+      />
+      <Toolbar
+        openHandler={sideDrawerOpenHandler}
+        isAuth={props.isAuthenticated}
+      />
+      <main className={styles.content}>{props.children}</main>
+    </>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

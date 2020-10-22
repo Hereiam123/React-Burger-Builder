@@ -1,4 +1,4 @@
-import React, { Component, Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import Layout from "./containers/Layout/Layout";
 import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder";
 import Auth from "./containers/Auth/Auth";
@@ -10,35 +10,34 @@ import * as authActions from "./store/actions/auth";
 const Checkout = lazy(() => import("./containers/Checkout/Checkout"));
 const Orders = lazy(() => import("./containers/Orders/Orders"));
 
-class App extends Component {
-  componentDidMount() {
-    this.props.onTryAutoSignup();
-  }
-  render() {
-    return (
-      <div>
-        <Layout>
-          <Switch>
-            <Route path="/" exact component={BurgerBuilder} />
-            <Route path="/auth" component={Auth} />
-            {this.props.isAuthenticated ? (
-              <>
-                <Suspense fallback={<div>Loading...</div>}>
-                  <Route path="/orders" component={Orders} />
-                  <Route path="/checkout" component={Checkout} />
-                </Suspense>
-                <Route path="/logout" component={Logout} />
-                <Route path="/auth" component={Auth} />
-              </>
-            ) : (
-              <Redirect to="/" />
-            )}
-          </Switch>
-        </Layout>
-      </div>
-    );
-  }
-}
+const App = (props) => {
+  useEffect(() => {
+    props.onTryAutoSignup();
+  }, []);
+
+  return (
+    <div>
+      <Layout>
+        <Switch>
+          <Route path="/" exact component={BurgerBuilder} />
+          <Route path="/auth" component={Auth} />
+          {props.isAuthenticated ? (
+            <>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Route path="/orders" component={Orders} />
+                <Route path="/checkout" component={Checkout} />
+              </Suspense>
+              <Route path="/logout" component={Logout} />
+              <Route path="/auth" component={Auth} />
+            </>
+          ) : (
+            <Redirect to="/" />
+          )}
+        </Switch>
+      </Layout>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
