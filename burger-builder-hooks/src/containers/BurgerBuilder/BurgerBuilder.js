@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../BuildControls/BuildControls";
@@ -11,79 +11,72 @@ import * as burgerBuilderActions from "../../store/actions/burgerBuilder";
 import * as orderActions from "../../store/actions/order";
 import * as authActions from "../../store/actions/auth";
 
-export class BurgerBuilder extends Component {
-  state = {
-    purchasing: false,
-  };
+const BurgerBuilder = (props) => {
+  const [purchasing, setPurchasing] = useState(false);
 
-  componentDidMount() {
-    this.props.onInitIngredients();
-  }
+  useEffect(() => {
+    props.onInitIngredients();
+  }, []);
 
-  purchaseHandler = () => {
-    if (this.props.isAuthenticated) {
-      this.setState({ purchasing: true });
+  const purchaseHandler = () => {
+    if (props.isAuthenticated) {
+      setPurchasing(true);
     } else {
-      this.props.onSetRedirectPath("/checkout");
-      this.props.history.push("/auth");
+      props.onSetRedirectPath("/checkout");
+      props.history.push("/auth");
     }
   };
 
-  purchaseCancelHandler = () => {
-    this.setState({ purchasing: false });
+  const purchaseCancelHandler = () => {
+    setPurchasing(false);
   };
 
-  purchaseContinueHandler = () => {
-    this.props.onInitPurchase();
-    this.props.history.push("/checkout");
+  const purchaseContinueHandler = () => {
+    props.onInitPurchase();
+    props.history.push("/checkout");
   };
 
-  render() {
-    /*Check if less button should be disabled for ingredient controls*/
-    const disabled = {
-      ...this.props.ings,
-    };
-    for (let key in disabled) {
-      disabled[key] = disabled[key] <= 0;
-    }
-    /*****************************************************************/
-    return (
-      <>
-        <Modal
-          show={this.state.purchasing}
-          modalClosed={this.purchaseCancelHandler}
-        >
-          {this.props.ings && (
-            <OrderSummary
-              ingredients={this.props.ings}
-              purchaseCancelled={this.purchaseCancelHandler}
-              purcahseContinued={this.purchaseContinueHandler}
-              price={this.props.price}
-            />
-          )}
-        </Modal>
-        {this.props.ings ? (
-          <>
-            <Burger ingredients={this.props.ings} />
-            <BuildControls
-              price={this.props.price}
-              ingredientAdded={this.props.onIngredientAdded}
-              ingredientRemoved={this.props.onIngredientRemoved}
-              isAuth={this.props.isAuthenticated}
-              disabled={disabled}
-              purchasable={this.props.price > 0}
-              ordering={this.purchaseHandler}
-            />
-          </>
-        ) : this.props.error ? (
-          <p>Ingredients have not loaded error.</p>
-        ) : (
-          <Spinner />
-        )}
-      </>
-    );
+  /*Check if less button should be disabled for ingredient controls*/
+  const disabled = {
+    ...props.ings,
+  };
+  for (let key in disabled) {
+    disabled[key] = disabled[key] <= 0;
   }
-}
+  /*****************************************************************/
+  return (
+    <>
+      <Modal show={purchasing} modalClosed={purchaseCancelHandler}>
+        {props.ings && (
+          <OrderSummary
+            ingredients={props.ings}
+            purchaseCancelled={purchaseCancelHandler}
+            purcahseContinued={purchaseContinueHandler}
+            price={props.price}
+          />
+        )}
+      </Modal>
+      {props.ings ? (
+        <>
+          <Burger ingredients={props.ings} />
+          <BuildControls
+            price={props.price}
+            ingredientAdded={props.onIngredientAdded}
+            ingredientRemoved={props.onIngredientRemoved}
+            isAuth={props.isAuthenticated}
+            disabled={disabled}
+            purchasable={props.price > 0}
+            ordering={purchaseHandler}
+          />
+        </>
+      ) : props.error ? (
+        <p>Ingredients have not loaded error.</p>
+      ) : (
+        <Spinner />
+      )}
+    </>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
