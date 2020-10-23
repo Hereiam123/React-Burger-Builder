@@ -13,3 +13,4 @@ Using:
 - Jest
 - Enzyme
 - Redux Saga
+- React Hooks
