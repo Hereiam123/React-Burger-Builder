@@ -11,9 +11,10 @@ const Checkout = lazy(() => import("./containers/Checkout/Checkout"));
 const Orders = lazy(() => import("./containers/Orders/Orders"));
 
 const App = (props) => {
+  const { onTryAutoSignup } = props;
   useEffect(() => {
-    props.onTryAutoSignup();
-  }, []);
+    onTryAutoSignup();
+  }, [onTryAutoSignup]);
 
   return (
     <div>

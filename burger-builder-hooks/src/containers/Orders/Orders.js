@@ -7,9 +7,10 @@ import withErroHandler from "../withErrorHandler/withErrorHandler";
 import * as orderActions from "../../store/actions/order";
 
 const Orders = (props) => {
+  const { authToken, userId, onInitFetchOrders } = props;
   useEffect(() => {
-    props.onInitFetchOrders(props.authToken, props.userId);
-  }, []);
+    onInitFetchOrders(authToken, userId);
+  }, [authToken, userId, onInitFetchOrders]);
 
   return (
     <div>
