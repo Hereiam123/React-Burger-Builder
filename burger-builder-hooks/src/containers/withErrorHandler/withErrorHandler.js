@@ -1,34 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Modal from "../../components/UI/Modal/Modal";
+import useHttpErrorHandler from "../util-hooks/http-error-handler";
 
 const withErrorHandler = (WrappedComponent, axios) => {
   return (props) => {
-    const [error, setError] = useState();
-    const requestInterceptor = axios.interceptors.request.use((req) => {
-      setError(null);
-      return req;
-    });
-    const responseInterceptor = axios.interceptors.response.use(
-      (res) => res,
-      (err) => {
-        setError(err);
-      }
-    );
-
-    useEffect(() => {
-      return () => {
-        axios.interceptors.request.eject(requestInterceptor);
-        axios.interceptors.response.eject(responseInterceptor);
-      };
-    }, [requestInterceptor, responseInterceptor]);
-
-    const errorConfirmedHandler = () => {
-      setError(null);
-    };
-
+    const [error, clearError] = useHttpErrorHandler(axios);
     return (
       <>
-        <Modal show={error} modalClosed={errorConfirmedHandler}>
+        <Modal show={error} modalClosed={clearError}>
           {error ? error.message : null}
         </Modal>
         <WrappedComponent {...props} />
